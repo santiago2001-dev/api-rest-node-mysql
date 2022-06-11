@@ -5,9 +5,9 @@ const conexion = require('../database/db');
 const cloundynary = require('cloudinary').v2;
 //autenticacion en cloundynary
 cloundynary.config({
-    cloud_name: 'decsantg',
-    api_key : '238788223631362',
-    api_secret: 'tDRcAEO7BJJLFQULn6HOIz8gSKU'
+    cloud_name: process.env.cloud_name,
+    api_key : process.env.api_key,
+    api_secret: process.env.api_secret
 
     
 })
@@ -25,7 +25,7 @@ exports.search = async(req,res) =>{
            
        }else{
            res.json(rows);
-           console.log(rows);
+           
        }
     }
     )
@@ -36,10 +36,10 @@ exports.getProducts =async(req,res)=>{
      await conexion.query(sql,(error,rows,fields,results)=>{
           if(error){
               throw error;
-              console.log("ha ocurrido un error de "+error);
+             
           }else{
               res.json(rows);
-              console.log(rows);
+              
           } 
       })
 }
@@ -54,7 +54,7 @@ exports.getProductsbyid =  ('/:codigo_prod',async(req,res)=>{
             
         }else{
             res.json(rows);
-            console.log(rows);
+            
         }
     }) 
 })
@@ -68,7 +68,7 @@ exports.insertProdcut = async(req,res)=>{
    conexion.query(sql,(error,rows,fields)=>{
        if(error){
         throw error;
-        console.log("ha ocurrido un error de "+error);
+      
        }else{
            res.json({status : 'registro agregado'}) 
        }
@@ -104,7 +104,7 @@ exports.deleteProduct = async (req,res)=>{
      await conexion.query(sql,(error,rows,fields)=>{ 
         if(error){
             throw error;
-         console.log("ha ocurrido un error de "+error);
+         
         }else{
             res.json({status : 'registro eliminado'})
  

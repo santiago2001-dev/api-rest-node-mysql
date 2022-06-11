@@ -1,15 +1,17 @@
-const conexion = require("./database/db");
+
 
 const router = require('express').Router();
-const login  = require('./controller/login');
-const products  = require('./controller/crudProducts');
-const users = require('./controller/crudUsers')
-const res = require("express/lib/response");
-const { route } = require("express/lib/application");
 
-//consultas de registros
+const login  = require('../controller/login');
+const products  = require('../controller/crudProducts');
+const users = require('../controller/crudUsers')
+
+
+//crud users
 
 router.get('/users',users.getUsers);
+
+//crud products
 router.get('/',products.getProducts);
 router.get('/',products.getProductsbyid);
 router.post('/search',products.search);
