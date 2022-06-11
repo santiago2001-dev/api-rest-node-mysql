@@ -5,42 +5,10 @@ const conexion = require('../database/db');
 const jwt =  require('jsonwebtoken');
 
 //barra de busqueda 
-exports.search = (req,res) =>{
-    const {busqueda} = req.body
-    console.log(req.body)
-    const sql = `SELECT * FROM productos WHERE  codigo_prod = '${busqueda}' OR titulo = '${busqueda}' OR fecha = '${busqueda}'OR tipo = '${busqueda}}' OR  tipo = '${busqueda}'  OR sinopsis = '${busqueda}'`
-    conexion.query(sql, (error,rows,fields) => {
-  
-        if(error){
-            throw error;
-           
-       }else{
-           res.json(rows);
-           console.log(rows);
-       }
-    }
-    )
-}
 
 
 //SIGIN
 
-exports.getUsers= (req,res)=>{
-     const sql = 'SELECT * from users';
-     console.log(sql)
-     
-     conexion.query(  sql,(error,results)=>{
-         if(error){
-            throw error;
-            console.log("ha ocurrido un error de "+error);
-        }else{
-            // res.json(results);
-            console.log(results);
-        } 
-        
-    })
-     
-}  
 
 
 exports.sigin = (req,res)=>{
